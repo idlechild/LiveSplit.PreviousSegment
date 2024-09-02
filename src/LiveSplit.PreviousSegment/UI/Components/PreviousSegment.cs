@@ -100,7 +100,7 @@ namespace LiveSplit.UI.Components
         public float MinimumHeight => InternalComponent.MinimumHeight;
 
         public string ComponentName
-            => "Previous Segment" + (Settings.Comparison == "Current Comparison" 
+            => "Segment" + (Settings.Comparison == "Current Comparison"
                 ? "" 
                 : " (" + CompositeComparisons.GetShortComparisonName(Settings.Comparison) + ")");
 
@@ -154,7 +154,7 @@ namespace LiveSplit.UI.Components
             if (!state.Run.Comparisons.Contains(comparison))
                 comparison = state.CurrentComparison;
             var comparisonName = CompositeComparisons.GetShortComparisonName(comparison);
-            var componentName = "Previous Segment" + (Settings.Comparison == "Current Comparison" ? "" : " (" + comparisonName + ")");
+            var componentName = "Segment" + (Settings.Comparison == "Current Comparison" ? "" : " (" + comparisonName + ")");
 
             InternalComponent.LongestString = componentName;
             InternalComponent.InformationName = componentName;
@@ -172,7 +172,7 @@ namespace LiveSplit.UI.Components
                 {
                     timeChange = liveSegment;
                     timeSave = GetPossibleTimeSave(state, state.CurrentSplitIndex, comparison);
-                    InternalComponent.InformationName = "Live Segment" + (Settings.Comparison == "Current Comparison" ? "" : " (" + comparisonName + ")");
+                    InternalComponent.InformationName = "Segment" + (Settings.Comparison == "Current Comparison" ? "" : " (" + comparisonName + ")");
                 }
                 else if (state.CurrentSplitIndex > 0)
                 {
@@ -202,17 +202,7 @@ namespace LiveSplit.UI.Components
             if (InternalComponent.InformationName != previousNameText)
             {
                 InternalComponent.AlternateNameText.Clear();
-                if (liveSegment != null)
-                {
-                    InternalComponent.AlternateNameText.Add("Live Segment");
-                    InternalComponent.AlternateNameText.Add("Live Seg.");
-                }
-                else
-                {
-                    InternalComponent.AlternateNameText.Add("Previous Segment");
-                    InternalComponent.AlternateNameText.Add("Prev. Segment");
-                    InternalComponent.AlternateNameText.Add("Prev. Seg.");
-                }
+                InternalComponent.AlternateNameText.Add("Seg.");
                 previousNameText = InternalComponent.InformationName;
             }
 
